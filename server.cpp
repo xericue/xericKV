@@ -13,6 +13,9 @@ int main() {
         abort();
     }
 
+    // next steps: bind and listen
+    // right now, our socket is TCP but typeless. we will make a listening socket
+    
     
 
     return 0;
