@@ -1,11 +1,14 @@
 #include <sys/socket.h>
+#include <netinet/in.h>
 #include <string>
 #include <iostream>
 
 int main() {
     // AF_INET = specify IPv4
-    // SOCK_STREAM = specifies TCP socket type because TCP provides a straight
-                //   connection-oriented data transfer (stream -> packets)
+    // SOCK_STREAM = opens a stream socket (TCP):
+    // specifies TCP socket type because TCP provides a straight
+    // connection-oriented data transfer (stream -> packets)
+    // i.e. IPv4+TCP protocol is what we define here
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     // error handling
     if (fd == 0) {
@@ -22,7 +25,12 @@ int main() {
 
     // setsockopt() - ingests the file descriptor fd - set (theres also get)
     // options on sockets
+    int options = 1;
+    setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
     
+    struct sockaddr_in addr {
+
+    };
     
     // int bind(fd, const struct sockaddr *addr, socklen_t addrlen); 
     
