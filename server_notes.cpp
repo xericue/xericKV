@@ -1,0 +1,53 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <string>
+#include <iostream>
+
+int main() {
+    // AF_INET = specify IPv4
+    // SOCK_STREAM = opens a stream socket (TCP):
+    // specifies TCP socket type because TCP provides a straight
+    // connection-oriented data transfer (stream -> packets)
+    // i.e. IPv4+TCP protocol is what we define here
+
+    // open an unitialized socket
+    int tcp_socket {socket(AF_INET, SOCK_STREAM, 0)};
+    // error handling
+    if (tcp_socket == 0) {
+        std::cout << "socket returned " << tcp_socket << " - error\n";
+        abort();
+    }
+
+    // listen
+    // next steps: bind and listen
+    // right now, our socket is TCP but typeless. we will make a listening socket
+    // socket exists in a name space but has no address assigned to it
+    
+    // so we need to specify an address with addr
+    // server creates a socket, binds a NAME to a socket
+
+    // setsockopt() - ingests the file descriptor fd - set (theres also get)
+    // options on sockets
+    
+    // bind socket to an address 
+    // bind(tcp_socket, address) to a local interface address
+    // this returns an integer and ingests the socket file descriptor, const struct sockaddr pointer to the address, and the address length)
+    
+    // listen
+    
+    // setsockopt() - ingests the file descriptor tcp_socket - set (theres also get)
+    // options on sockets
+    int options {1};
+    setsockopt(tcp_socket, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
+    
+    // setting socket options to reuse sockets, beginning to create the struct 
+    // for the socket address for correct connection
+    struct sockaddr_in addr {
+
+    };
+    
+    // int bind(fd, const struct sockaddr *addr, socklen_t addrlen); 
+    
+    
+    return 0;
+}

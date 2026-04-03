@@ -4,12 +4,8 @@
 #include <iostream>
 
 int main() {
-    // AF_INET = specify IPv4
-    // SOCK_STREAM = opens a stream socket (TCP):
-    // specifies TCP socket type because TCP provides a straight
-    // connection-oriented data transfer (stream -> packets)
-    // i.e. IPv4+TCP protocol is what we define here
 
+    // open an unitialized socket, IPv4 + TCP protocol
     int tcp_socket {socket(AF_INET, SOCK_STREAM, 0)};
     // error handling
     if (tcp_socket == 0) {
@@ -17,16 +13,14 @@ int main() {
         abort();
     }
 
-    // next steps: bind and listen
-    // right now, our socket is TCP but typeless. we will make a listening socket
-    // socket exists in a name space but has no address assigned to it
+    // bind socket to an address 
+    // bind(tcp_socket, address)
     
-    // so we need to specify an address with addr
-    // server creates a socket, binds a NAME to a socket
-
-    // setsockopt() - ingests the file descriptor fd - set (theres also get)
+    // listen
+    
+    // setsockopt() - ingests the file descriptor tcp_socket - set (theres also get)
     // options on sockets
-    int options = 1;
+    int options {1};
     setsockopt(tcp_socket, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
     
     // setting socket options to reuse sockets, beginning to create the struct 

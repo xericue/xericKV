@@ -9,3 +9,5 @@ the base idea is that the `server` creates a `socket` and binds it to a port (sa
 when a process/server wants to receive new incoming packets or connections, it should bind its socket to a `local interface address`
 - only one IP (internet protocol) socket may be bound to any given local address PAIR: `(address, port)`
 
+## Namespace
+
