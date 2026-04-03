@@ -8,7 +8,7 @@ int main() {
     // open an unitialized socket, IPv4 + TCP protocol
     int tcp_socket {socket(AF_INET, SOCK_STREAM, 0)};
     // error handling
-    if (tcp_socket == 0) {
+    if (tcp_socket < 0) {
         std::cout << "socket returned " << tcp_socket << " - error\n";
         abort();
     }
