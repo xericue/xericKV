@@ -17,7 +17,7 @@ static void read_write(int socket) {
 
     std::cout << "client says " << read_buffer << '\n';
 
-    char write_buffer[64] {"yea bro\n"};
+    char write_buffer[64] {"yo\n"};
     write(socket, write_buffer, sizeof(write_buffer));
 }
 
@@ -52,7 +52,7 @@ int main() {
 
     struct sockaddr_in address = {};
     address.sin_family = AF_INET;
-    address.sin_port = htons(8080); // port 6767
+    address.sin_port = htons(6767); // port 6767
     address.sin_addr.s_addr = htonl(0); // wildcard IP 0.0.0.0
     
     // sockfd (tcp_socket), const struct sockaddr *addr, socklen_t);
