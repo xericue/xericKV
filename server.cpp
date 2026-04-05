@@ -4,7 +4,7 @@
 #include <iostream>
 
 int main() {
-
+    
     // open an unitialized socket, IPv4 + TCP protocol
     int tcp_socket {socket(AF_INET, SOCK_STREAM, 0)};
     // error handling
