@@ -3,7 +3,23 @@
 #include <string>
 #include <stdint.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <iostream>
+
+static void read_write(int socket) {
+    char read_buffer[64] {}; // read buffer
+    ssize_t n = read(socket, read_buffer, sizeof(read_buffer));
+
+    if (n < 0) {
+        std::cout << "read error\n";
+        return;
+    }
+
+    std::cout << "client says " << read_buffer << '\n';
+
+    char write_buffer[64] {"yea bro\n"};
+    write(socket, write_buffer, sizeof(write_buffer));
+}
 
 int main() {
     
@@ -60,6 +76,23 @@ int main() {
 
     /////////////////
     // accepting connections in an event loop
+    while (true) {
+        // process each client connection
+        // accept()
+        struct sockaddr_in client = {};
+        socklen_t client_len = sizeof(client);
+
+        int client_file_descriptor = accept(tcp_socket, (struct sockaddr *)&client, &client_len);
+        if (client_file_descriptor == -1) {
+            // std::cout << "accept returned " << bound_socket << " - error\n";
+            // exit(1);
+            continue;
+        }
+
+        // do whatever here!
+        read_write(client_file_descriptor);
+        close(client_file_descriptor);
+    }
 
     
     return 0;
