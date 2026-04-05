@@ -44,12 +44,23 @@ int main() {
     int bound_socket = bind(tcp_socket, (const sockaddr *)&address, sizeof(address));
 
     if (bound_socket) {
-        std::cout << "socket returned " << bound_socket << " - error\n";
+        std::cout << "bind returned " << bound_socket << " - error\n";
         exit(1);
     }
     
     // listen()
-    
+    // this actually creates the socket - OS handles TCP handshake; places connections in a queue
+    bound_socket = listen(tcp_socket, SOMAXCONN); // macro for #define SOMAXCONN 4096; size of the queue in bits(???)
+
+    // returns 0 on success, -1 for errors
+    if (bound_socket) {
+        std::cout << "listen returned " << bound_socket << " - error\n";
+        exit(1);
+    }
+
+    /////////////////
+    // accepting connections in an event loop
+
     
     return 0;
 }
