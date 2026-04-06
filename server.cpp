@@ -27,7 +27,7 @@ int one_request(int socket) {
 
 }
 
-static int32_t read_all(int fd, char *buf, size_t size) {
+static int32_t read_full(int fd, char *buf, size_t size) {
     while (size > 0) {
         ssize_t read_vector = read(fd, buf, size);
         if (read_vector <= 0)
@@ -39,7 +39,13 @@ static int32_t read_all(int fd, char *buf, size_t size) {
     return 0;
 }
 
-ssize_t write()
+static int32_t write_all(int fd, const char *buf, size_t size) {
+    while (size > 0) {
+        
+    }
+
+    return 0;
+}
 
 int main() {
     
