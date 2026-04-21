@@ -63,17 +63,6 @@ int main() {
     int options {1};
     setsockopt(tcp_socket, SOL_SOCKET, SO_REUSEADDR, &options, sizeof(options));
     
-    // setting socket options to reuse sockets, beginning to create the struct 
-    // for the socket address for correct connection
-    // struct sockaddr_in {
-    //     uint16_t sin_family;
-    //     uint16_t sin_port;
-    //     struct in_addr sin_addr;
-    // };
-
-    // struct in_addr {
-    //     uint32_t s_addr;
-    // };
 
     struct sockaddr_in addr = {};
     addr.sin_family = AF_INET; // TCP
