@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include "walentry.h" // why the header file and not cpp?
+// this is saying insert contents of walentry.h here
 class WALEntry {
     public:
         int gurt {};
