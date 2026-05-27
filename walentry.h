@@ -2,6 +2,11 @@
 #include <string>
 // declarations of methods/classes go here
 
+// header files contain the class declaration
+// as well as signatures of methods/variables
+
+// what is #pragma once
+
 class WALEntry {
     private:
         std::string timestamp;
@@ -15,6 +20,4 @@ class WALEntry {
 
         // other methods here (all methods are mostly public whereas data is private -
         // proper OOP encapsulation
-
-    
 };
